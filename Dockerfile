@@ -3,5 +3,5 @@ RUN mkdir /storage
 COPY perftest.php /
 RUN chmod +x /perftest.php
 VOLUME [/storage]
-ENTRYPOINT [ "/perftest.php"]
-CMD ["/storage", "10000", "1"]
+ENTRYPOINT [ "/perftest.php", "/storage"]
+CMD ["10000", "1"]

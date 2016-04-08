@@ -25,23 +25,21 @@ run ()
   	echo "Run $i"
   	 if [ $LOCAL -eq 0 ] 
   	 then
-  	   docker run -ti --rm  -v $HOME/storagetest:/storage danquah/php-fileperf /storage $COUNT $SIZE
+  	   docker run --rm  -v $HOME/storagetest:/storage danquah/php-fileperf $COUNT $SIZE
   	 else
-	   docker run -ti --rm danquah/php-fileperf /storage $COUNT $SIZE
+	   docker run --rm danquah/php-fileperf $COUNT $SIZE
   	 fi
   done
 }
 
 echo
 echo "Local"
-# Local fs tests
 run 3 10000 1 1
 run 3 1000 10 1
 run 3 100 100 1
 
 echo
 echo "Volume-based"
-# Volume fs tests
 run 3 10000 1 0
 run 3 1000 10 0
 run 3 100 100 0
