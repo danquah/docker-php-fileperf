@@ -13,7 +13,7 @@ $file_size = $argv[3];
 echo "Creating $num_files files {$file_size}KB each in $dir, total size " . number_format($file_size * $num_files) . "KB \n";
 
 $buffer = str_repeat('x', 1024);
-$start = microtime(TRUE);
+$start = $total_start = microtime(TRUE);
 foreach (range(0, $num_files) as $number) {
   // Create file, truncate if exists.
   $file_path = gen_filepath($dir, $number);
@@ -47,6 +47,8 @@ foreach (range(0, $num_files) as $number) {
 $duration = round(microtime(TRUE) - $start, 2);
 echo "Read $num_files files in $duration ms \n";
 
+$total_duration = round(microtime(TRUE) - $total_start, 2);
+echo "\n ** Total duration: $total_duration **";
 
 function gen_filepath($dir, $number) {
   return "$dir/file-$number";
