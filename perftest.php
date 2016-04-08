@@ -32,23 +32,23 @@ echo "Created $num_files files in $duration ms\n";
 
 // Clear phps file stat cache.
 clearstatcache();
-$start = time();
+
+$start = microtime(TRUE);
 foreach (range(0, $num_files) as $number) {
   stat(gen_filepath($dir, $number));
 }
-
 $duration = round(microtime(TRUE) - $start, 2);
 echo "Got status of $num_files files in $duration ms \n";
 
+$start = microtime(TRUE);
 foreach (range(0, $num_files) as $number) {
   file_get_contents(gen_filepath($dir, $number));
 }
-
 $duration = round(microtime(TRUE) - $start, 2);
 echo "Read $num_files files in $duration ms \n";
 
 $total_duration = round(microtime(TRUE) - $total_start, 2);
-echo "\n ** Total duration: $total_duration **";
+echo "** Total duration: $total_duration **\n";
 
 function gen_filepath($dir, $number) {
   return "$dir/file-$number";
