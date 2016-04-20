@@ -32,6 +32,7 @@ run ()
   done
 }
 
+docker pull danquah/php-fileperf
 echo
 echo "Local"
 run 3 10000 1 1
