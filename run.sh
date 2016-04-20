@@ -25,9 +25,9 @@ run ()
   	echo "Run $i"
   	 if [ $LOCAL -eq 0 ] 
   	 then
-  	   docker run --rm  -v $HOME/storagetest:/storage danquah/php-fileperf $COUNT $SIZE
+  	   docker run --rm -ti -v $HOME/storagetest:/storage danquah/php-fileperf $COUNT $SIZE
   	 else
-	   docker run --rm danquah/php-fileperf $COUNT $SIZE
+	   docker run --rm -ti danquah/php-fileperf $COUNT $SIZE
   	 fi
   done
 }
